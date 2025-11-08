@@ -7,7 +7,7 @@
 function gen(){
   const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let s="";
-  const length = Math.floor(Math.random()*15)+6;
+  const length = Math.floor(Math.random()*13)+8; // от 8 до 20
   let underscoreUsed = false;
   for(let i=0;i<length;i++){
     let useU = !underscoreUsed && Math.random()<0.1;
@@ -16,10 +16,12 @@ function gen(){
     s+=c;
   }
   s = s.replace(/^_+|_+$/g,"");
-  while(s.length<6) s+=chars[Math.floor(Math.random()*chars.length)];
+  while(s.length<8) s+=chars[Math.floor(Math.random()*chars.length)];
   return s;
 }
-let v = gen(); document.getElementById("raw").textContent = v; document.title = v.length; 
+let v = gen();
+document.getElementById("raw").textContent = v;
+document.title = v.length;
 </script>
 </body>
-</html> 
+</html>
