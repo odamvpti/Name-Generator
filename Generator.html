@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>raw</title></head>
+<body>
+<pre id="raw"></pre>
+<script>
+function gen(){
+  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let s="";
+  const length = Math.floor(Math.random()*15)+6;
+  let underscoreUsed = false;
+  for(let i=0;i<length;i++){
+    let useU = !underscoreUsed && Math.random()<0.1;
+    let c = useU ? "_" : chars[Math.floor(Math.random()*chars.length)];
+    if(c==="_") underscoreUsed=true;
+    s+=c;
+  }
+  s = s.replace(/^_+|_+$/g,"");
+  while(s.length<6) s+=chars[Math.floor(Math.random()*chars.length)];
+  return s;
+}
+let v = gen(); document.getElementById("raw").textContent = v; document.title = v.length; 
+</script>
+</body>
+</html> 
