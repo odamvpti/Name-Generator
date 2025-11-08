@@ -7,18 +7,27 @@
 function gen(){
   const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let s="";
-  const length = Math.floor(Math.random()*13)+8; // от 8 до 20
+  const length = Math.floor(Math.random()*4) + 8; // 8-11
   let underscoreUsed = false;
+
   for(let i=0;i<length;i++){
-    let useU = !underscoreUsed && Math.random()<0.1;
+    let useU = !underscoreUsed && Math.random() < 0.1;
     let c = useU ? "_" : chars[Math.floor(Math.random()*chars.length)];
-    if(c==="_") underscoreUsed=true;
-    s+=c;
+    if(c === "_") underscoreUsed = true;
+    s += c;
   }
+
+  // Убираем _ в начале/конце
   s = s.replace(/^_+|_+$/g,"");
-  while(s.length<8) s+=chars[Math.floor(Math.random()*chars.length)];
+
+  // Если стало короче минимального — дополняем
+  while(s.length < 8){
+    s += chars[Math.floor(Math.random()*chars.length)];
+  }
+
   return s;
 }
+
 let v = gen();
 document.getElementById("raw").textContent = v;
 document.title = v.length;
